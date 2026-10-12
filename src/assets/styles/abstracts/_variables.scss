@@ -7,21 +7,18 @@ $colors: (
   "accent": #e50914,
   "highlight": #f4c430,
 );
-
 $breakpoints: (
   "sm": 576px,
   "md": 768px,
   "lg": 1024px,
   "xl": 1280px,
 );
-
 $z-layers: (
   "base": 1,
   "header": 100,
   "menu": 200,
   "skip-link": 300,
 );
-
 $spacing-unit: 8px;
 $font-size-base: 16px;
 $header-height: 64px;
