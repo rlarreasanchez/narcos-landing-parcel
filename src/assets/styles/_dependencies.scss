@@ -1,7 +1,21 @@
 /**
  * Import any npm dependencies in this file
- * see commented examples below
  */
 
-// @import "some-node-module";
-// @import "@some-company/some-node-module";
+// Font Awesome Free (solo el conjunto "solid"). Las webfonts se resuelven
+// desde node_modules mediante el prefijo ~ de Parcel (raíz del proyecto).
+@use "@fortawesome/fontawesome-free/scss/variables" with (
+  $font-path: "~/node_modules/@fortawesome/fontawesome-free/webfonts"
+);
+@use "@fortawesome/fontawesome-free/scss/fontawesome";
+@use "@fortawesome/fontawesome-free/scss/solid";
+
+// AOS (Animate On Scroll)
+@use "aos/dist/aos.css";
+
+// Respaldo sin JavaScript: AOS oculta los elementos con opacity: 0
+// hasta que su script añade la clase de animación.
+.no-js [data-aos] {
+  opacity: 1;
+  transform: none;
+}

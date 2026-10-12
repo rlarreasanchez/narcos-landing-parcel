@@ -46,5 +46,9 @@
     "stylelint": "^16.26.1",
     "stylelint-config-standard-scss": "^16.0.0",
     "stylelint-selector-bem-pattern": "^4.0.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.3.1",
+    "aos": "^2.3.4"
   }
 }

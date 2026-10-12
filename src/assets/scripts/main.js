@@ -1,16 +1,17 @@
 /**
  * Import dependencies from node_modules
- * see commented examples below
  */
-
-// import 'some-node-module';
-// import SomeModule from 'some-node-module';
+import AOS from "aos";
 
 /**
  * Write any other JavaScript below
  */
 
-+(function () {
-  const university = "UOC";
-  console.log(`Hello, ${university}!`);
-})();
+// Hay JavaScript: se sustituye la clase de respaldo no-js por js.
+document.documentElement.classList.replace("no-js", "js");
+
+// AOS se desactiva si el usuario prefiere menos movimiento.
+AOS.init({
+  once: true,
+  disable: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+});
