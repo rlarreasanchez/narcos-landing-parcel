@@ -1,0 +1,25 @@
+/** @define skip-link */
+@use "../abstracts" as *;
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: spacing(2);
+  z-index: z("skip-link");
+  padding: spacing(1.5) spacing(3);
+  background-color: color("highlight");
+  color: color("bg");
+  font-weight: 700;
+  transform: translateY(-100%);
+  transition: transform 0.15s ease-out;
+
+  &:focus {
+    outline: 3px solid color("text");
+    outline-offset: 2px;
+    transform: translateY(0);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}

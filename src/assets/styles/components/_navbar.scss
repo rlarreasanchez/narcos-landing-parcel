@@ -1,0 +1,113 @@
+/** @define navbar */
+@use "../abstracts" as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: z("header");
+  height: $header-height;
+  background-color: color("bg");
+  border-block-end: 1px solid color("surface");
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__brand {
+    color: color("accent");
+    font-size: rem(24px);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: spacing(6);
+    height: spacing(6);
+    background: transparent;
+    border: 1px solid color("text-muted");
+    border-radius: spacing(0.5);
+    color: color("text");
+    cursor: pointer;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    @include mq("md") {
+      display: none;
+    }
+  }
+
+  &__icon {
+    font-size: rem(20px);
+  }
+
+  // Móvil: panel desplegable bajo la cabecera, cerrado por defecto.
+  &__menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: z("menu");
+    display: none;
+    padding: spacing(1) spacing(2) spacing(2);
+    background-color: color("surface");
+    border-block-end: 1px solid color("text-muted");
+
+    &--open {
+      display: block;
+    }
+
+    @include mq("md") {
+      position: static;
+      display: flex;
+      gap: spacing(3);
+      padding: 0;
+      background: none;
+      border: 0;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: spacing(1.5) 0;
+    color: color("text");
+    text-decoration: none;
+
+    &:hover {
+      color: color("highlight");
+      text-decoration: underline;
+    }
+
+    @include mq("md") {
+      padding: spacing(1) 0;
+    }
+  }
+}
+
+// Sin JavaScript no hay botón: el menú queda siempre visible.
+// El estado .no-js de <html> no es BEM, por eso se excluye del linter.
+
+/* postcss-bem-linter: ignore */
+.no-js .navbar__toggle {
+  display: none;
+}
+
+/* postcss-bem-linter: ignore */
+.no-js .navbar__menu {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing(2);
+  padding: 0;
+  background: none;
+  border: 0;
+}

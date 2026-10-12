@@ -2,6 +2,7 @@
  * Import dependencies from node_modules
  */
 import AOS from "aos";
+import { initNavbar } from "./navbar";
 
 /**
  * Write any other JavaScript below
@@ -15,3 +16,5 @@ AOS.init({
   once: true,
   disable: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
 });
+
+initNavbar();

@@ -2,6 +2,7 @@
 @use "../abstracts" as *;
 
 .section {
+  scroll-margin-top: $header-height;
   padding-block: spacing(8);
 
   @include mq("md") {

@@ -51,3 +51,8 @@ button {
   font: inherit;
   color: inherit;
 }
+
+// Destino del enlace de salto: sin recuadro
+main:focus {
+  outline: none;
+}
