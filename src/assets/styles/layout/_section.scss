@@ -1,0 +1,14 @@
+/** @define section */
+@use "../abstracts" as *;
+
+.section {
+  padding-block: spacing(8);
+
+  @include mq("md") {
+    padding-block: spacing(12);
+  }
+
+  &__title {
+    margin-block-end: spacing(4);
+  }
+}

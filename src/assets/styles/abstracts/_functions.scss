@@ -1,0 +1,35 @@
+@use "sass:map";
+@use "sass:math";
+@use "variables";
+
+/// Convierte px a rem usando $font-size-base.
+@function rem($px) {
+  @if math.is-unitless($px) {
+    $px: $px * 1px;
+  }
+
+  @return math.div($px, variables.$font-size-base) * 1rem;
+}
+
+/// Múltiplos de la unidad de espaciado, en rem.
+@function spacing($step) {
+  @return rem($step * variables.$spacing-unit);
+}
+
+/// Valor de una capa de z-index; error si no existe.
+@function z($layer) {
+  @if not map.has-key(variables.$z-layers, $layer) {
+    @error "La capa z-index `#{$layer}` no existe. Capas: #{map.keys(variables.$z-layers)}.";
+  }
+
+  @return map.get(variables.$z-layers, $layer);
+}
+
+/// Color de la paleta; error si no existe.
+@function color($name) {
+  @if not map.has-key(variables.$colors, $name) {
+    @error "El color `#{$name}` no existe. Colores: #{map.keys(variables.$colors)}.";
+  }
+
+  @return map.get(variables.$colors, $name);
+}

@@ -1,0 +1,13 @@
+/** @define container */
+@use "../abstracts" as *;
+
+.container {
+  width: 100%;
+  max-width: rem(1200px);
+  margin-inline: auto;
+  padding-inline: spacing(2);
+
+  @include mq("md") {
+    padding-inline: spacing(4);
+  }
+}

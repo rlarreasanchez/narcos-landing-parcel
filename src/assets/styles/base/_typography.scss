@@ -1,0 +1,61 @@
+@use "../abstracts" as *;
+
+// Tipografía del sistema: sin fuentes web ni peticiones externas.
+html {
+  font-size: 100%;
+}
+
+body {
+  background-color: color("bg");
+  color: color("text");
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    roboto,
+    "Helvetica Neue",
+    arial,
+    sans-serif;
+  font-size: rem(16px);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: rem(40px);
+
+  @include mq("md") {
+    font-size: rem(64px);
+  }
+}
+
+h2 {
+  font-size: rem(28px);
+
+  @include mq("md") {
+    font-size: rem(36px);
+  }
+}
+
+h3 {
+  font-size: rem(22px);
+}
+
+a {
+  color: color("highlight");
+  text-underline-offset: 0.2em;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

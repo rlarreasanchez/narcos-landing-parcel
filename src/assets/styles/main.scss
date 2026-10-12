@@ -9,5 +9,12 @@
 @use "dependencies";
 
 /**
+ * Import base, layout and components
+ */
+@use "base";
+@use "layout";
+@use "components";
+
+/**
  * Do NOT include anything else in this file!
  */

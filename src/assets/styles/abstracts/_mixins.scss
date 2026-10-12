@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "variables";
+@use "functions";
+
+/// Media query min-width (mobile-first) a partir de $breakpoints.
+@mixin mq($bp) {
+  @if not map.has-key(variables.$breakpoints, $bp) {
+    @error "El breakpoint `#{$bp}` no existe. Breakpoints: #{map.keys(variables.$breakpoints)}.";
+  }
+
+  @media (min-width: map.get(variables.$breakpoints, $bp)) {
+    @content;
+  }
+}
+
+/// Anillo de foco visible.
+@mixin focus-ring {
+  outline: 3px solid functions.color("highlight");
+  outline-offset: 2px;
+}
+
+/// Contenido para usuarios con prefers-reduced-motion.
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
