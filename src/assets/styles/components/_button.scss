@@ -1,0 +1,27 @@
+/** @define button */
+@use "../abstracts" as *;
+
+.button {
+  display: inline-block;
+  padding: spacing(1.5) spacing(4);
+  background-color: color("highlight");
+  border-radius: spacing(0.5);
+  color: color("bg");
+  font-size: rem(18px);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s ease-out;
+
+  &:hover {
+    background-color: color("text");
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
