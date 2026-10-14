@@ -1,0 +1,47 @@
+/** @define timeline */
+@use "../abstracts" as *;
+
+.timeline {
+  position: relative;
+  margin-inline-start: spacing(1);
+  padding-inline-start: spacing(4);
+  border-inline-start: 2px solid color("text-muted");
+
+  &__item {
+    position: relative;
+    padding-block-end: spacing(4);
+
+    // Punto sobre la línea de tiempo (elemento no textual: admite el acento).
+    &::before {
+      content: "";
+      position: absolute;
+      top: spacing(0.5);
+      left: calc(-1 * spacing(4) - spacing(0.75) - 1px);
+      width: spacing(1.5);
+      height: spacing(1.5);
+      background-color: color("accent");
+      border-radius: 50%;
+    }
+
+    &:last-child {
+      padding-block-end: 0;
+    }
+  }
+
+  &__date {
+    display: block;
+    color: color("highlight");
+    font-size: rem(14px);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin-block: spacing(0.5);
+  }
+
+  &__text {
+    max-width: 65ch;
+  }
+}
