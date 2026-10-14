@@ -12,4 +12,16 @@
   &__title {
     margin-block-end: spacing(4);
   }
+
+  &__subtitle {
+    margin-block: spacing(6) spacing(3);
+  }
+
+  &__text {
+    max-width: 65ch;
+
+    & + & {
+      margin-block-start: spacing(2);
+    }
+  }
 }
