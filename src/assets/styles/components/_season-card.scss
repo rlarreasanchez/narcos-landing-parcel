@@ -1,0 +1,33 @@
+/** @define season-card */
+@use "../abstracts" as *;
+
+.season-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: color("surface");
+  border-radius: spacing(1);
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: spacing(3);
+  }
+
+  &__title {
+    margin-block-end: spacing(0.5);
+  }
+
+  &__meta {
+    margin-block-end: spacing(2);
+    color: color("text-muted");
+    font-size: rem(14px);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}

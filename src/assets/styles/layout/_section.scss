@@ -17,6 +17,19 @@
     margin-block: spacing(6) spacing(3);
   }
 
+  &__grid {
+    display: grid;
+    gap: spacing(3);
+
+    &--seasons {
+      grid-template-columns: 1fr;
+
+      @include mq("lg") {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+
   &__text {
     max-width: 65ch;
 
