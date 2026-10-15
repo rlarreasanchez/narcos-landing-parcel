@@ -1,0 +1,16 @@
+/** @define video */
+@use "../abstracts" as *;
+
+.video {
+  max-width: rem(960px);
+  margin-block-end: spacing(2);
+  overflow: hidden;
+  background-color: color("surface");
+  border-radius: spacing(1);
+
+  &__frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+  }
+}
