@@ -30,6 +30,19 @@
     }
   }
 
+  &__grid--cast {
+    grid-template-columns: repeat(2, 1fr);
+    gap: spacing(2);
+
+    @include mq("md") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mq("xl") {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
   &__text {
     max-width: 65ch;
 
