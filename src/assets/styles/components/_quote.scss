@@ -1,0 +1,25 @@
+/** @define quote */
+@use "../abstracts" as *;
+
+.quote {
+  max-width: rem(840px);
+  margin-inline: auto;
+  padding-inline-start: spacing(3);
+  border-inline-start: spacing(0.75) solid color("accent");
+
+  &__text {
+    margin: 0;
+    font-size: rem(24px);
+    font-style: italic;
+    line-height: 1.4;
+
+    @include mq("md") {
+      font-size: rem(32px);
+    }
+  }
+
+  &__caption {
+    margin-block-start: spacing(2);
+    color: color("text-muted");
+  }
+}
