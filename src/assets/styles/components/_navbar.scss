@@ -18,8 +18,9 @@
 
   &__brand {
     color: color("accent");
+    font-family: font("display");
     font-size: rem(24px);
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 0.08em;
     text-decoration: none;
     text-transform: uppercase;

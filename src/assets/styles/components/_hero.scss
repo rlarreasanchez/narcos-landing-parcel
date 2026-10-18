@@ -48,6 +48,8 @@
   &__title {
     // Texto grande (>= 24px): admite el rojo de acento.
     color: color("accent");
+    font-family: font("display");
+    font-weight: 400;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }

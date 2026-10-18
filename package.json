@@ -49,6 +49,8 @@
     "stylelint-selector-bem-pattern": "^4.0.1"
   },
   "dependencies": {
+    "@fontsource/bebas-neue": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
     "@fortawesome/fontawesome-free": "^7.3.1",
     "aos": "^2.3.4"
   }

@@ -1,0 +1,38 @@
+@use "sass:map";
+
+// Fuentes autoalojadas (@fontsource)
+$font-path: "~/node_modules/@fontsource";
+
+// Familia, carpeta del paquete y variantes (peso + estilo) que se cargan
+$font-families: (
+  "Bebas Neue": (
+    "package": "bebas-neue",
+    "variants": (
+      (400, normal),
+    ),
+  ),
+  "Inter": (
+    "package": "inter",
+    "variants": (
+      (400, normal),
+      (400, italic),
+      (600, normal),
+      (700, normal),
+    ),
+  ),
+);
+
+@each $family, $config in $font-families {
+  $package: map.get($config, "package");
+
+  @each $weight, $style in map.get($config, "variants") {
+    @font-face {
+      font-family: $family;
+      font-style: $style;
+      font-weight: $weight;
+      font-display: swap;
+      src: url("#{$font-path}/#{$package}/files/#{$package}-latin-#{$weight}-#{$style}.woff2")
+        format("woff2");
+    }
+  }
+}

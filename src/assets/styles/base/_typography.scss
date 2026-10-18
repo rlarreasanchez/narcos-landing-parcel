@@ -1,6 +1,6 @@
 @use "../abstracts" as *;
 
-// Tipografía del sistema: sin fuentes web ni peticiones externas.
+// Tipografía autoalojada vía @fontsource (ver base/_fonts.scss).
 html {
   font-size: 100%;
 }
@@ -8,14 +8,7 @@ html {
 body {
   background-color: color("bg");
   color: color("text");
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    roboto,
-    "Helvetica Neue",
-    arial,
-    sans-serif;
+  font-family: font("body");
   font-size: rem(16px);
   line-height: 1.6;
 }
@@ -27,19 +20,26 @@ h4 {
   line-height: 1.2;
 }
 
+h1,
+h2 {
+  font-family: font("display");
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 h1 {
-  font-size: rem(40px);
+  font-size: rem(48px);
 
   @include mq("md") {
-    font-size: rem(64px);
+    font-size: rem(72px);
   }
 }
 
 h2 {
-  font-size: rem(28px);
+  font-size: rem(32px);
 
   @include mq("md") {
-    font-size: rem(36px);
+    font-size: rem(44px);
   }
 }
 

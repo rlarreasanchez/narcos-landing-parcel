@@ -33,3 +33,12 @@
 
   @return map.get(variables.$colors, $name);
 }
+
+/// Pila tipográfica; error si no existe.
+@function font($name) {
+  @if not map.has-key(variables.$fonts, $name) {
+    @error "La fuente `#{$name}` no existe. Fuentes: #{map.keys(variables.$fonts)}.";
+  }
+
+  @return map.get(variables.$fonts, $name);
+}
