@@ -1,0 +1,26 @@
+/** @define footer */
+@use "../abstracts" as *;
+
+.footer {
+  padding-block: spacing(6);
+  background-color: color("surface");
+  border-block-start: 1px solid color("text-muted");
+
+  &__inner {
+    display: grid;
+    gap: spacing(2);
+  }
+
+  &__text {
+    max-width: 65ch;
+    color: color("text-muted");
+
+    &--small {
+      font-size: rem(14px);
+    }
+  }
+
+  &__link {
+    color: color("highlight");
+  }
+}
