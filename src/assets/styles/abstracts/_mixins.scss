@@ -19,6 +19,13 @@
   outline-offset: 2px;
 }
 
+/// Efectos hover solo para dispositivos que soportan hover.
+@mixin hover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
 /// Contenido para usuarios con prefers-reduced-motion.
 @mixin reduced-motion {
   @media (prefers-reduced-motion: reduce) {

@@ -2,6 +2,7 @@
 $colors: (
   "bg": #0b0b0b,
   "surface": #181818,
+  "surface-raised": #232323,
   "text": #f5f5f1,
   "text-muted": #b3b3b3,
   "accent": #e50914,
@@ -37,5 +38,7 @@ $z-layers: (
   "skip-link": 300,
 );
 $spacing-unit: 8px;
+$measure: 800px;
+$transition-base: 0.2s ease-out;
 $font-size-base: 16px;
 $header-height: 64px;
