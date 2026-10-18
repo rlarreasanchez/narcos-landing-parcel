@@ -4,7 +4,6 @@
 .reasons {
   display: grid;
   gap: spacing(3);
-  margin-block-start: spacing(4);
 
   @include mq("md") {
     grid-template-columns: repeat(2, 1fr);

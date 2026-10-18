@@ -9,12 +9,24 @@
     padding-block: spacing(12);
   }
 
+  &--alt {
+    background-color: color("surface");
+  }
+
   &__title {
-    margin-block-end: spacing(4);
+    margin-block-end: spacing(5);
+    text-align: center;
+  }
+
+  &__body {
+    display: grid;
+    gap: spacing(6);
+    max-width: rem($measure);
+    margin-inline: auto;
   }
 
   &__subtitle {
-    margin-block: spacing(6) spacing(3);
+    margin: 0;
   }
 
   &__grid {
@@ -44,10 +56,12 @@
   }
 
   &__text {
-    max-width: 65ch;
-
-    & + & {
-      margin-block-start: spacing(2);
+    @include mq("md") {
+      font-size: rem(18px);
     }
+  }
+
+  &__body > &__text + &__text {
+    margin-block-start: calc(spacing(2) - spacing(6));
   }
 }
