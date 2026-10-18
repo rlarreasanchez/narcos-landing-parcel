@@ -25,6 +25,10 @@
     margin-inline: auto;
   }
 
+  &__body--lead {
+    margin-block-end: spacing(6);
+  }
+
   &__subtitle {
     margin: 0;
   }
