@@ -5,9 +5,10 @@
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: min(80vh, rem(720px));
+  min-height: calc(min(80vh, rem(720px)) + #{$header-height});
+  padding-top: $header-height;
   overflow: hidden;
-  background-color: color("surface");
+  background-color: color("bg");
 
   // Degradado que asegura el contraste del texto sobre la imagen.
   &::after {
@@ -17,20 +18,21 @@
     background: linear-gradient(
       to top,
       color("bg") 0%,
-      rgb(color("bg"), 0.85) 45%,
+      rgb(color("bg"), 0.85) 10%,
       rgb(color("bg"), 0.55) 100%
     );
   }
 
   &__media {
     position: absolute;
-    inset: 0;
+    inset: $header-height 0 0;
   }
 
   &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
   }
 
   &__content {

@@ -2,12 +2,32 @@
 @use "../abstracts" as *;
 
 .navbar {
-  position: sticky;
+  position: fixed;
+  inset-inline: 0;
   top: 0;
   z-index: z("header");
   height: $header-height;
-  background-color: color("bg");
-  border-block-end: 1px solid color("surface");
+  background: linear-gradient(
+    to bottom,
+    rgb(color("bg"), 0.85) 0%,
+    rgb(color("bg"), 0.45) 100%
+  );
+  border-block-end: 1px solid transparent;
+  transition:
+    background-color $transition-base,
+    border-color $transition-base,
+    backdrop-filter $transition-base;
+
+  // Al hacer scroll se oscurece y desenfoca lo que pasa por detrás.
+  &--scrolled {
+    background: rgb(color("bg"), 0.82);
+    border-block-end-color: color("surface");
+    backdrop-filter: blur(8px);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
 
   &__inner {
     display: flex;

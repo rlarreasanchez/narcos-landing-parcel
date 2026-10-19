@@ -2,7 +2,23 @@ const OPEN_CLASS = "navbar__menu--open";
 const LABEL_OPEN = "Abrir menú";
 const LABEL_CLOSE = "Cerrar menú";
 
+const SCROLLED_CLASS = "navbar--scrolled";
+const SCROLL_THRESHOLD = 40;
+
+function initScrollState() {
+  const navbar = document.querySelector(".navbar");
+  if (!navbar) return;
+
+  const update = () =>
+    navbar.classList.toggle(SCROLLED_CLASS, window.scrollY > SCROLL_THRESHOLD);
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+}
+
 export function initNavbar() {
+  initScrollState();
+
   const toggle = document.querySelector(".navbar__toggle");
   const menu = document.getElementById("navbar-menu");
   if (!toggle || !menu) return;
