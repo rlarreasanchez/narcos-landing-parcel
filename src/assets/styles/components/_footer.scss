@@ -12,8 +12,11 @@
   }
 
   &__text {
-    max-width: 65ch;
+    width: 100%;
+    max-width: rem($measure);
+    margin-inline: auto;
     color: color("text-muted");
+    text-align: center;
 
     &--small {
       font-size: rem(14px);

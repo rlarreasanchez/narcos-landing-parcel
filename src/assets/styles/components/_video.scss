@@ -2,7 +2,9 @@
 @use "../abstracts" as *;
 
 .video {
+  width: 100%;
   max-width: rem(960px);
+  margin-inline: auto;
   overflow: hidden;
   background-color: color("surface");
   border-radius: spacing(1);

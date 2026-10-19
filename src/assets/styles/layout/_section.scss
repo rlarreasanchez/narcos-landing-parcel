@@ -25,6 +25,10 @@
     margin-inline: auto;
   }
 
+  &__body--wide {
+    max-width: rem(960px);
+  }
+
   &__body--lead {
     margin-block-end: spacing(6);
   }
@@ -63,6 +67,10 @@
     @include mq("md") {
       font-size: rem(18px);
     }
+  }
+
+  &__text--center {
+    text-align: center;
   }
 
   &__body > &__text + &__text {
