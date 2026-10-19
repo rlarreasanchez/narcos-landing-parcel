@@ -7,10 +7,48 @@
   background-color: color("surface-raised");
   border-radius: spacing(1);
 
+  // Elevación de la tarjeta y zoom de la imagen dentro de su marco.
+  @include hover {
+    transition:
+      transform $transition-base,
+      box-shadow $transition-base;
+
+    &:hover {
+      box-shadow: $shadow-raised;
+      transform: translateY(-4px);
+    }
+
+    &:hover &__image {
+      transform: scale(1.05);
+    }
+
+    @include reduced-motion {
+      transition: none;
+
+      &:hover,
+      &:hover &__image {
+        transform: none;
+      }
+    }
+  }
+
+  &__media {
+    display: block;
+    overflow: hidden;
+  }
+
   &__image {
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
+
+    @include hover {
+      transition: transform $transition-base;
+
+      @include reduced-motion {
+        transition: none;
+      }
+    }
   }
 
   &__caption {

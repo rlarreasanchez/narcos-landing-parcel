@@ -20,6 +20,31 @@
       height: spacing(1.5);
       background-color: color("accent");
       border-radius: 50%;
+
+      @include hover {
+        transition:
+          transform $transition-base,
+          box-shadow $transition-base;
+      }
+    }
+
+    @include hover {
+      &:hover::before {
+        box-shadow: 0 0 0 4px rgb(color("accent"), 0.3);
+        transform: scale(1.3);
+      }
+    }
+
+    @include reduced-motion {
+      &::before {
+        transition: none;
+      }
+
+      @include hover {
+        &:hover::before {
+          transform: none;
+        }
+      }
     }
 
     &:last-child {

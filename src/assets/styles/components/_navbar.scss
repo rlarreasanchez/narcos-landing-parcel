@@ -78,18 +78,65 @@
   }
 
   &__link {
+    position: relative;
     display: block;
+    width: fit-content;
     padding: spacing(1.5) 0;
     color: color("text");
     text-decoration: none;
 
-    &:hover {
-      color: color("highlight");
-      text-decoration: underline;
+    // Subrayado animado: crece desde la izquierda en hover y foco de teclado.
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      bottom: spacing(0.5);
+      height: 2px;
+      background-color: color("highlight");
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    &:focus-visible::after {
+      transform: scaleX(1);
     }
 
     @include mq("md") {
       padding: spacing(1) 0;
+    }
+
+    @include hover {
+      &::after {
+        transition: transform $transition-base;
+      }
+
+      &:hover {
+        color: color("highlight");
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
+    }
+
+    // Sin movimiento: el subrayado aparece de golpe, sin escalar.
+    @include reduced-motion {
+      &::after {
+        opacity: 0;
+        transform: none;
+        transition: none;
+      }
+
+      &:focus-visible::after {
+        opacity: 1;
+      }
+
+      @include hover {
+        &:hover::after {
+          opacity: 1;
+          transform: none;
+        }
+      }
     }
   }
 }

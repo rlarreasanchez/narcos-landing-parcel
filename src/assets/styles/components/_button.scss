@@ -10,18 +10,47 @@
   font-size: rem(18px);
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.15s ease-out;
 
-  &:hover {
-    background-color: color("text");
-    text-decoration: none;
+  &__icon {
+    display: inline-block;
+    margin-inline-start: spacing(1);
+
+    @include hover {
+      transition: transform $transition-base;
+    }
+
+    @include reduced-motion {
+      transition: none;
+    }
   }
 
   &:focus-visible {
     @include focus-ring;
   }
 
+  &:focus-visible &__icon {
+    transform: translateY(3px);
+  }
+
+  @include hover {
+    transition: background-color $transition-base;
+
+    &:hover {
+      background-color: color("text");
+      text-decoration: none;
+    }
+
+    &:hover &__icon {
+      transform: translateY(3px);
+    }
+  }
+
   @include reduced-motion {
     transition: none;
+
+    &:hover &__icon,
+    &:focus-visible &__icon {
+      transform: none;
+    }
   }
 }
