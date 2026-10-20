@@ -85,6 +85,13 @@
 
     &--open {
       display: block;
+      animation: navbar-menu-in $transition-base;
+    }
+
+    @include reduced-motion {
+      &--open {
+        animation: none;
+      }
     }
 
     @include mq("md") {
@@ -94,6 +101,10 @@
       padding: 0;
       background: none;
       border: 0;
+
+      &--open {
+        animation: none;
+      }
     }
   }
 
@@ -158,6 +169,18 @@
         }
       }
     }
+  }
+}
+
+@keyframes navbar-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
