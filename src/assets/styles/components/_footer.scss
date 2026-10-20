@@ -2,28 +2,108 @@
 @use "../abstracts" as *;
 
 .footer {
-  padding-block: spacing(6);
+  padding-block: spacing(6) spacing(4);
   background-color: color("surface");
-  border-block-start: 1px solid color("text-muted");
+  border-block-start: 4px solid color("accent");
 
   &__inner {
     display: grid;
-    gap: spacing(2);
+    gap: spacing(5);
   }
 
-  &__text {
-    width: 100%;
-    max-width: rem($measure);
-    margin-inline: auto;
-    color: color("text-muted");
-    text-align: center;
+  &__columns {
+    display: grid;
+    gap: spacing(5);
 
-    &--small {
-      font-size: rem(14px);
+    @include mq("md") {
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: spacing(6);
     }
   }
 
+  &__logo {
+    color: color("accent");
+    font-family: font("display");
+    font-size: rem(56px);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__tagline {
+    max-width: 32ch;
+    margin-block-start: spacing(2);
+    color: color("text-muted");
+  }
+
+  &__heading {
+    margin-block-end: spacing(2);
+    color: color("text");
+    font-family: font("display");
+    font-size: rem(24px);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+
+  &__list {
+    display: grid;
+    gap: spacing(1);
+    padding: 0;
+    list-style: none;
+  }
+
+  &__nav &__list {
+    // Dos columnas en la lista de secciones para que no alargue el footer
+    grid-template-columns: repeat(2, auto);
+    justify-content: start;
+    column-gap: spacing(4);
+  }
+
   &__link {
+    color: color("text-muted");
+    text-decoration: none;
+    transition: color $transition-base;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    @include hover {
+      &:hover {
+        color: color("highlight");
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__more &__link {
     color: color("highlight");
+    text-decoration: underline;
+  }
+
+  &__note {
+    margin-block-start: spacing(3);
+    color: color("text-muted");
+    font-size: rem(14px);
+  }
+
+  &__legal {
+    display: grid;
+    gap: spacing(1);
+    padding-block-start: spacing(3);
+    color: color("text-muted");
+    font-size: rem(12px);
+    font-style: italic;
+    border-block-start: 1px solid color("surface-raised");
+
+    @include mq("lg") {
+      grid-template-columns: 1fr 1fr;
+      gap: spacing(4);
+    }
   }
 }
