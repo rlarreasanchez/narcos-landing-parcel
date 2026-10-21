@@ -1,67 +1,96 @@
-# UOC Boilerplate
+<p align="center">
+  <img src="src/assets/images/hero.jpg" alt="Narcos" width="100%" />
+</p>
 
-UOC Boilerplate is a starter template for the HTML and CSS Tools courses from the [Master's Program in Multimedia Applications](https://estudis.uoc.edu/ca/masters-universitaris/aplicacions-multimedia/presentacio) and the [Master's Program in Web App and Website Development](https://estudis.uoc.edu/ca/masters-universitaris/desenvolupament-llocs-aplicacions-web/presentacio) at the [Universitat Oberta de Catalunya](https://www.uoc.edu). It aims to provide a basic, modern frontend web development starter pack based on Parcel and including a Sass compiler, an ES6 transpiler, minifiers, an image transformer, and development tools.
+<h1 align="center">Narcos · Web de fans</h1>
 
-This is the 3.x version of UOC Boilerplate, available since the UOC 2020-2 semester.
+<p align="center">
+  Landing page de fans de la serie <strong>Narcos</strong>, creada para la PEC 1 de <em>Herramientas HTML y CSS II</em> (UOC).
+</p>
 
-## Requirements
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/Sass-CC6699?logo=sass&logoColor=white" alt="Sass" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Parcel-21374B?logo=parcel&logoColor=white" alt="Parcel" />
+</p>
 
-[Node.js](http://nodejs.org/) >= 18.x
+## Secciones
 
-## Getting started
+Página única con navegación por anclas:
 
-Clone this repository with `git clone`, or download a .zip file using the top right green button.
+1. **Hero**: imagen a pantalla completa, con recorte distinto en móvil, y llamada a la acción.
+2. **Sinopsis**: resumen de la serie y ficha técnica.
+3. **Temporadas**: tarjetas de las tres temporadas.
+4. **Importancia histórica**: línea de tiempo con los hechos reales.
+5. **Reparto principal**: tarjetas con actor y personaje.
+6. **Tráiler**: vídeo de YouTube (`youtube-nocookie`) incrustado de forma responsive.
+7. **Cita** destacada.
+8. **Por qué verla**: cinco motivos con iconos.
+9. **Footer**: enlaces a las secciones y recursos externos.
 
-Using the Terminal, navigate to the project folder and run `npm install`.
+## Funcionalidades
 
-## Features
+- **Diseño responsive mobile-first**, con breakpoints `sm`, `md`, `lg` y `xl` gestionados por el mixin `mq()`.
+- **Navbar fija** que cambia de estilo al hacer scroll y se convierte en un menú hamburguesa en móvil. El menú se cierra con `Escape` o al pulsar un enlace.
+- **Animaciones al hacer scroll** con [AOS](https://michalsnik.github.io/aos/), desactivadas si el usuario tiene activado `prefers-reduced-motion`.
+- **Imágenes optimizadas**: WebP generado con `sharp`, `srcset`/`sizes` para servir el tamaño adecuado y `loading="lazy"` en las que quedan fuera de la primera pantalla.
+- **Fuentes autoalojadas** (Bebas Neue e Inter vía Fontsource), cargando solo el subconjunto latino y los pesos que se usan.
+- **Iconos** de Font Awesome.
 
-- Uses [Parcel v2](https://parceljs.org) module bundler.
-- NPM scripts for fast development and production build (see Commands below).
+## Accesibilidad
 
-### Stylesheets
+- HTML semántico (`header`, `nav`, `main`, `section`, `article`, `blockquote`, `dl`) y secciones enlazadas a su título con `aria-labelledby`.
+- Enlace para saltar al contenido (_skip link_) y un anillo de foco visible.
+- Menú móvil con `aria-expanded` y etiqueta accesible.
+- Paleta oscura con contraste WCAG 2.1 AA y abreviaturas marcadas con `<abbr>`.
+- Efectos `hover` solo en dispositivos con puntero.
 
-- [Sass/SCSS](https://sass-lang.com) to CSS compilation (`@parcel/transformer-sass`).
-- Transpilation of modern CSS synthax to support older bvrowsers, based on `browserslist`, including vendor prefixing and synthax lowering, with [PostCSS](https://postcss.org/) (`@parcel/transformer-postcss`).
-- Minification and optimization of CSS files on production builds with [`lightningcss`](https://github.com/parcel-bundler/lightningcss) (`@parcel/optimizer-css`).
+## Estructura
 
-### HTML
+```
+src/
+├── index.html              # Esqueleto de la página; incluye los parciales
+├── views/                  # Una sección por parcial (posthtml-include)
+└── assets/
+    ├── images/             # Imágenes originales (sharp genera las variantes)
+    ├── favicon/
+    ├── scripts/
+    │   ├── main.js         # Dependencias, AOS e inicialización
+    │   └── navbar.js       # Scroll y menú móvil
+    └── styles/
+        ├── main.scss       # Solo importa parciales
+        ├── abstracts/      # Variables, funciones y mixins
+        ├── base/           # Reset, tipografía y utilidades
+        ├── layout/         # Contenedor y secciones
+        └── components/     # Un parcial por componente
+```
 
-- Minification and optimization of CSS files on production builds [`htmlnano`](https://github.com/posthtml/htmlnano) (`@parcel/optimizer-htmlnano`).
-- [PostHTML](https://github.com/posthtml/posthtml) (`@parcel/transformer-posthtml`) features:
-  - Include partial HTML files with [`posthtml-include`](https://github.com/posthtml/posthtml-include).
+## Criterios
 
-### Scripts
+- **Sass modular** con `@use` y una organización inspirada en el patrón 7-1, simplificada en `abstracts`, `base`, `layout` y `components`.
+- **BEM** para nombrar las clases (`bloque__elemento--modificador`), validado con `stylelint-selector-bem-pattern`.
+- **Design tokens** en `_variables.scss` (colores, fuentes, breakpoints, capas de `z-index` y espaciado), a los que se accede mediante funciones como `color()`.
+- **HTML dividido en parciales** para que cada sección se pueda mantener por separado.
+- **JavaScript mínimo**, como mejora progresiva: la clase `no-js` se sustituye por `js` al cargar, y la página sigue funcionando sin scripts.
 
-- Transpilation of modern JavaScript synthax to support older browsers, based on `browserslist`, with with [Babel](https://babeljs.io/) (`@parcel/transformer-babel`).
-- Minification and optimization of JS code with [SWC](https://swc.rs/) (`@parcel/optimizer-swc`).
+## Uso
 
-### Images
+Requiere Node.js >= 18. Proyecto basado en [UOC Boilerplate 3.x](https://github.com/uoc-advanced-html-css/uoc-boilerplate) (Parcel v2).
 
-- Image transformation with [`sharp`](https://sharp.pixelplumbing.com/) ([`@parcel/transformer-image`](https://parceljs.org/recipes/image/)).
+```bash
+npm install       # instalar dependencias
+npm run dev       # servidor de desarrollo en http://localhost:8123
+npm run build     # build de producción en dist/
+npm run lint:css  # revisar los estilos con Stylelint
+```
 
-### Development
+## Autor
 
-- Development server launch and live reloading on file changes.
-- Friendly error reporting.
+**Rafael Larrea**: PEC 1 de _Herramientas HTML y CSS II_, Máster Universitario en Desarrollo de Sitios y Aplicaciones Web (UOC).
 
-## How to use this boilerplate
+## Licencia
 
-Content lives inside the `src/` folder. If you do not want to change the configuration or are unsure about what you are doing, do not edit files outside the `src/` folder.
+El código se distribuye bajo licencia [MIT](LICENSE), igual que el UOC Boilerplate en el que se basa.
 
-Always run the following commands during the development stage and for production builds. Please note that it is expected that all projects built with this boilerplate are compiled using `npm run build` before they are published.
-
-### Commands
-
-| Command         | Description                                                                                                                                                                                                                                                                                                                                                         |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev`   | Runs a local web server for development and opens the browser to display it. Automatically compiles styles and scripts whenever a file in `src/` is changed, and live reloads the browser. This is what _must be run_ on the development stage.                                                                                                                     |
-| `npm run build` | Compiles and minifies and optimizes the files in the assets folder. The generated compiled and optimized files are located in the `dist/` folder. This is what _must be run_ before publishing the project. This is also the build command to be run by external deployment services such as Netlify. The publishable files are then located in the `dist/` folder. |
-| `npm run clean` | Deletes the current `/dist` folder and cache folders.                                                                                                                                                                                                                                                                                                               |
-| `npm run test`  | Displays a success message if everything is working as expected.                                                                                                                                                                                                                                                                                                    |
-
-## Need help? / Want to help out?
-
-Feel free to create a [new issue](https://github.com/uoc-advanced-html-css/uoc-boilerplate/issues/new/) or drop me a line at jorditarrida@uoc.edu.
-
-Are you using this Boilerplate for your projects or for educational purposes? I would love to hear about it!
+_Narcos_ y todas sus imágenes y marcas pertenecen a Netflix y a sus respectivos titulares. Se usan aquí solo con fines educativos, en un proyecto sin ánimo de lucro.

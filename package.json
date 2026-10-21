@@ -1,8 +1,15 @@
 {
-  "name": "uoc-boilerplate",
-  "version": "3.14.0",
+  "name": "narcos-landing-parcel",
+  "version": "1.0.0",
   "private": true,
-  "description": "Boilerplate for Advanced HTML/CSS Tools UOC students",
+  "description": "Landing page de fans de la serie Narcos (PEC 1 de Herramientas HTML y CSS II, UOC)",
+  "keywords": [
+    "narcos",
+    "landing-page",
+    "sass",
+    "parcel",
+    "uoc"
+  ],
   "scripts": {
     "parcel:serve": "parcel -p 8123 --target web",
     "parcel:build": "parcel build --target web --no-source-maps --no-cache",
@@ -24,17 +31,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uoc-advanced-html-css/uoc-boilerplate.git"
+    "url": "git+https://github.com/rlarreasanchez/narcos-landing-parcel.git"
   },
   "author": {
-    "name": "Jordi Tarrida",
-    "email": "jorditarrida@uoc.edu"
+    "name": "Rafael Larrea",
+    "email": "rlarreasanchez@gmail.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/uoc-advanced-html-css/uoc-boilerplate/issues"
+    "url": "https://github.com/rlarreasanchez/narcos-landing-parcel/issues"
   },
-  "homepage": "https://github.com/uoc-advanced-html-css/uoc-boilerplate#readme",
+  "homepage": "https://github.com/rlarreasanchez/narcos-landing-parcel#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.16.4",
     "autoprefixer": "^10.5.5",
