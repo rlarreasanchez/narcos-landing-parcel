@@ -47,6 +47,10 @@ h3 {
   font-size: rem(22px);
 }
 
+abbr[title] {
+  cursor: help;
+}
+
 a {
   color: color("highlight");
   text-underline-offset: 0.2em;
