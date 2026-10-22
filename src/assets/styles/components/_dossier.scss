@@ -1,0 +1,138 @@
+/** @define dossier */
+@use "../abstracts" as *;
+
+.dossier {
+  &__header {
+    position: relative;
+    display: grid;
+    gap: spacing(1);
+    padding: spacing(3);
+
+    // Espacio reservado para que el sello no tape el texto.
+    padding-inline-end: rem(150px);
+
+    @include mq("sm") {
+      padding-inline-end: rem(200px);
+    }
+
+    // El sello entra con scale(2.5): se recorta para no provocar scroll horizontal.
+    overflow: clip;
+    color: color("ink");
+    font-family: font("body");
+    background-color: color("paper");
+  }
+
+  &__agency {
+    margin: 0;
+    font-size: rem(14px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__line {
+    margin: 0;
+    font-size: rem(18px);
+  }
+
+  // El texto real sigue en el DOM; la barra de censura lo cubre.
+  &__redacted {
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: color("ink");
+      transform: scaleX(1);
+      transform-origin: right;
+      transition: transform $transition-base;
+
+      @include reduced-motion {
+        transition: none;
+      }
+    }
+  }
+
+  &__toggle {
+    display: inline-flex;
+    gap: spacing(1);
+    align-items: center;
+    justify-self: start;
+    margin-block-start: spacing(1);
+    padding: spacing(1) spacing(2);
+    color: color("paper");
+    font: inherit;
+    font-weight: 600;
+    background-color: color("ink");
+    border: 0;
+    border-radius: spacing(0.5);
+    cursor: pointer;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid color("ink");
+      outline-offset: 2px;
+    }
+  }
+
+  &__stamp {
+    position: absolute;
+    inset-block-start: spacing(2);
+    inset-inline-end: spacing(2);
+    padding: spacing(0.5) spacing(1.5);
+    color: color("accent");
+    font-family: font("display");
+    font-size: rem(24px);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: spacing(0.5) double color("accent");
+    border-radius: spacing(0.5);
+    rotate: -12deg;
+    pointer-events: none;
+
+    @include mq("sm") {
+      font-size: rem(32px);
+    }
+
+    // Animación AOS propia "stamp": el sello cae desde grande.
+    &[data-aos="stamp"] {
+      opacity: 0;
+      transform: scale(2.5);
+      transition-property: opacity, transform;
+    }
+
+    // La clase aos-animate la añade AOS y no sigue BEM: se excluye del linter.
+
+    /* postcss-bem-linter: ignore */
+    &.aos-animate {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &--declassified &__redacted::after {
+    transform: scaleX(0);
+  }
+}
+
+// Sin JavaScript no se puede desclasificar: los datos se leen sin barras.
+// El estado .no-js de <html> no es BEM, por eso se excluye del linter.
+
+/* postcss-bem-linter: ignore */
+.no-js .dossier__redacted::after {
+  display: none;
+}
+
+// Sin JavaScript AOS no actúa: el sello aparece en reposo.
+// Debe ir tras la regla [data-aos="stamp"].
+
+/* postcss-bem-linter: ignore */
+.no-js .dossier__stamp {
+  opacity: 1;
+  transform: none;
+}

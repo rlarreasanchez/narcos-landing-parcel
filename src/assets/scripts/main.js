@@ -2,6 +2,7 @@
  * Import dependencies from node_modules
  */
 import AOS from "aos";
+import { initDossier } from "./dossier";
 import { initNavbar } from "./navbar";
 
 /**
@@ -18,3 +19,4 @@ AOS.init({
 });
 
 initNavbar();
+initDossier();
