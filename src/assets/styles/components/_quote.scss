@@ -7,6 +7,10 @@
   padding-inline-start: spacing(3);
   border-inline-start: spacing(0.75) solid color("accent");
 
+  &__figure {
+    margin: 0;
+  }
+
   &__text {
     margin: 0;
     font-family: font("body");
@@ -23,5 +27,53 @@
   &__caption {
     margin-block-start: spacing(2);
     color: color("text-muted");
+  }
+
+  &__text,
+  &__caption {
+    transition: opacity $transition-base;
+
+    @include reduced-motion {
+      transition: none;
+    }
+  }
+
+  &--changing &__text,
+  &--changing &__caption {
+    opacity: 0;
+  }
+
+  &__next[hidden] {
+    display: none;
+  }
+
+  &__next {
+    display: inline-flex;
+    gap: spacing(1);
+    align-items: center;
+    margin-block-start: spacing(2);
+    padding: 0;
+    color: color("text-muted");
+    font: inherit;
+    font-weight: 600;
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    @include hover {
+      transition: color $transition-base;
+
+      &:hover {
+        color: color("text");
+      }
+    }
+
+    @include reduced-motion {
+      transition: none;
+    }
   }
 }
