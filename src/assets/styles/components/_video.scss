@@ -14,4 +14,9 @@
     aspect-ratio: 16 / 9;
     border: 0;
   }
+
+  &--compact {
+    min-width: rem(200px);
+    max-width: rem(400px);
+  }
 }

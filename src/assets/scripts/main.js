@@ -4,6 +4,7 @@
 import AOS from "aos";
 import { initDossier } from "./dossier";
 import { initNavbar } from "./navbar";
+import { initThemeSong } from "./theme-song.js";
 
 /**
  * Write any other JavaScript below
@@ -20,3 +21,4 @@ AOS.init({
 
 initNavbar();
 initDossier();
+initThemeSong();

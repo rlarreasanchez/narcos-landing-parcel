@@ -1,0 +1,84 @@
+/** @define theme-song */
+@use "../abstracts" as *;
+
+.theme-song {
+  display: grid;
+  gap: spacing(2);
+  justify-items: center;
+  text-align: center;
+
+  &__title {
+    margin: 0;
+    font-family: font("display");
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  &__text {
+    margin: 0;
+  }
+
+  &__player {
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: spacing(2);
+    justify-content: center;
+  }
+
+  &__play[hidden],
+  &__close[hidden] {
+    display: none;
+  }
+
+  &__play {
+    border: 0;
+    cursor: pointer;
+  }
+
+  &__close {
+    display: inline-flex;
+    gap: spacing(1);
+    align-items: center;
+    padding: spacing(1.5) spacing(3);
+    color: color("text");
+    font: inherit;
+    font-weight: 600;
+    background-color: transparent;
+    border: 2px solid color("text-muted");
+    border-radius: spacing(0.5);
+    cursor: pointer;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    @include hover {
+      transition:
+        background-color $transition-base,
+        border-color $transition-base;
+
+      &:hover {
+        background-color: color("surface-raised");
+        border-color: color("text");
+      }
+    }
+
+    @include reduced-motion {
+      transition: none;
+    }
+  }
+
+  &__notice {
+    margin: 0;
+    color: color("text-muted");
+    font-size: rem(14px);
+  }
+
+  &__fallback {
+    font-weight: 600;
+  }
+}
