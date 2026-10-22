@@ -18,14 +18,26 @@
     background: linear-gradient(
       to top,
       color("bg") 0%,
-      rgb(color("bg"), 0.85) 10%,
-      rgb(color("bg"), 0.55) 100%
+      rgb(color("bg"), 0.85) 20%,
+      rgb(color("bg"), 0.45) 60%,
+      rgb(color("bg"), 0.15) 100%
     );
   }
 
   &__media {
     position: absolute;
     inset: $header-height 0 0;
+
+    // Capa que se desvanece sobre la imagen. En reposo es transparente.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: color("bg");
+      opacity: 0;
+      pointer-events: none;
+      animation: hero-reveal 3.5s ease-in-out;
+    }
   }
 
   &__image {
@@ -33,6 +45,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    animation: hero-zoom 8s ease-out;
   }
 
   &__content {
@@ -45,6 +58,7 @@
     color: color("text-muted");
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    animation: hero-rise 0.6s ease-out 0.6s both;
   }
 
   &__title {
@@ -54,11 +68,60 @@
     font-weight: 400;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    animation: hero-rise 0.6s ease-out 0.75s both;
   }
 
   &__subtitle {
     max-width: 40rem;
     margin-block: spacing(2) spacing(4);
     font-size: rem(20px);
+    animation: hero-rise 0.6s ease-out 0.9s both;
+  }
+
+  &__cta {
+    animation: hero-rise 0.6s ease-out 1.05s both;
+  }
+
+  @include reduced-motion {
+    &__media::after,
+    &__image,
+    &__meta,
+    &__title,
+    &__subtitle,
+    &__cta {
+      animation: none;
+    }
+  }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
