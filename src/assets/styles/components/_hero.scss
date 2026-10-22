@@ -27,6 +27,7 @@
   &__media {
     position: absolute;
     inset: $header-height 0 0;
+    overflow: hidden;
 
     // Capa que se desvanece sobre la imagen. En reposo es transparente.
     &::after {
