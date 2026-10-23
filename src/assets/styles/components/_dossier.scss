@@ -35,6 +35,11 @@
     font-size: rem(18px);
   }
 
+  &__mission {
+    margin: 0;
+    font-size: rem(16px);
+  }
+
   // El texto real sigue en el DOM; la barra de censura lo cubre.
   &__redacted {
     position: relative;
@@ -55,18 +60,34 @@
     }
   }
 
-  &__toggle {
+  // Barra retirada: el dato queda a la vista.
+  &__redacted--revealed::after,
+  &--declassified &__redacted::after {
+    transform: scaleX(0);
+  }
+
+  &__hint {
+    margin: spacing(1) 0 0;
+    color: color("ink");
+    font-size: rem(14px);
+    font-style: italic;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__reveal {
     display: inline-flex;
     gap: spacing(1);
     align-items: center;
     justify-self: start;
-    margin-block-start: spacing(1);
     padding: spacing(1) spacing(2);
-    color: color("paper");
+    color: color("ink");
     font: inherit;
     font-weight: 600;
-    background-color: color("ink");
-    border: 0;
+    background-color: transparent;
+    border: 2px solid color("ink");
     border-radius: spacing(0.5);
     cursor: pointer;
 
@@ -74,6 +95,7 @@
       display: none;
     }
 
+    // El anillo amarillo no contrasta sobre el papel: se usa uno oscuro.
     &:focus-visible {
       outline: 3px solid color("ink");
       outline-offset: 2px;
@@ -115,8 +137,13 @@
     }
   }
 
-  &--declassified &__redacted::after {
-    transform: scaleX(0);
+  // «Desclasificado» es más largo que «Clasificado»: el sello se reduce.
+  &--declassified &__stamp {
+    font-size: rem(18px);
+
+    @include mq("sm") {
+      font-size: rem(24px);
+    }
   }
 }
 
@@ -135,4 +162,36 @@
 .no-js .dossier__stamp {
   opacity: 1;
   transform: none;
+}
+
+// Mecánicas de desclasificación. Van tras las reglas sin JavaScript porque
+// algunos selectores son más específicos que ellas. Las activa dossier.js
+// con un modificador (dossier--swipe).
+// stylelint-disable-next-line no-duplicate-selectors
+.dossier {
+  // Método borrar al pasar (dossier-swipe.js): la barra se recoge en la
+  // dirección por la que entra el gesto.
+  &--swipe &__redacted {
+    cursor: crosshair;
+
+    // Solo las barras capturan el gesto: fuera de ellas la página hace scroll.
+    touch-action: none;
+
+    &::after {
+      transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+
+      @include reduced-motion {
+        transition: none;
+      }
+    }
+  }
+
+  &--swipe &__redacted--from-right::after {
+    transform-origin: left;
+  }
+
+  &--swipe &__redacted--revealed {
+    cursor: auto;
+    touch-action: auto;
+  }
 }

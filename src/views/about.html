@@ -35,12 +35,24 @@
             Agentes asignados:
             <span class="dossier__redacted">S. Murphy, J. Peña</span>
           </p>
-          <button class="dossier__toggle" type="button" hidden>
+          <p class="dossier__line">Misión:</p>
+          <p class="dossier__mission">
+            <span class="dossier__redacted"
+              >Localizar y capturar a Pablo Escobar, jefe del cártel de
+              Medellín, y desmantelar su red de producción y distribución de
+              cocaína. Murphy y Peña operarán sobre el terreno con un apoyo
+              limitado de la policía colombiana, en una operación sin margen de
+              error y sin garantías para su seguridad.</span
+            >
+          </p>
+          <!-- Pista y botón de revelado -->
+          <p class="dossier__hint" aria-live="polite" hidden></p>
+          <button class="dossier__reveal" type="button" hidden>
             <i
-              class="dossier__toggle-icon fa-solid fa-lock-open"
+              class="dossier__reveal-icon fa-solid fa-lock-open"
               aria-hidden="true"
             ></i>
-            <span class="dossier__toggle-label">Desclasificar</span>
+            <span class="dossier__reveal-label">Revelar todo</span>
           </button>
           <span class="dossier__stamp" aria-hidden="true" data-aos="stamp"
             >Clasificado</span
