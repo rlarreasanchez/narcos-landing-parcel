@@ -18,7 +18,11 @@ function readLastIndex() {
 }
 
 function saveLastIndex(index) {
-  sessionStorage.setItem(STORAGE_KEY, String(index));
+  try {
+    sessionStorage.setItem(STORAGE_KEY, String(index));
+  } catch {
+    // Sin sessionStorage: la siguiente recarga puede repetir la frase.
+  }
 }
 
 function pickIndex(excluded) {
