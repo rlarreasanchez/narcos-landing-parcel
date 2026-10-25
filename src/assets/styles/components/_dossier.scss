@@ -166,7 +166,7 @@
 
 // Mecánicas de desclasificación. Van tras las reglas sin JavaScript porque
 // algunos selectores son más específicos que ellas. Las activa dossier.js
-// con un modificador (dossier--swipe).
+// con un modificador (dossier--uv, dossier--scratch o dossier--swipe).
 // stylelint-disable-next-line no-duplicate-selectors
 .dossier {
   // Método rascador (dossier-scratch.js): el canvas sustituye a la barra.
@@ -214,6 +214,71 @@
   }
 
   &--swipe &__redacted--revealed {
+    cursor: auto;
+    touch-action: auto;
+  }
+
+  // Método linterna UV (dossier-uv.js): zona de juego donde el dedo mueve la
+  // luz, no la página. --dossier-uv-x y --dossier-uv-y los escribe el script;
+  // --dossier-uv-r es el radio de la luz.
+  &--uv &__header {
+    --dossier-uv-r: #{rem(48px)};
+
+    cursor: crosshair;
+    touch-action: none;
+
+    @media (pointer: coarse) {
+      --dossier-uv-r: #{rem(56px)};
+    }
+
+    // Halo violeta que sigue a la luz. No captura eventos.
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle var(--dossier-uv-r) at var(--dossier-uv-x, 50%)
+          var(--dossier-uv-y, 50%),
+        color-mix(in srgb, color("uv") 20%, transparent),
+        transparent
+      );
+      opacity: 0;
+      transition: opacity $transition-base;
+      pointer-events: none;
+
+      @include reduced-motion {
+        transition: none;
+      }
+    }
+  }
+
+  &--uv &__header--lit::before {
+    opacity: 1;
+  }
+
+  // Bajo la luz se ve el texto en tinta UV; fuera, la barra lo cubre.
+  &--uv &__redacted {
+    color: color("uv");
+    text-shadow: 0 0 rem(8px) color-mix(in srgb, color("uv") 60%, transparent);
+  }
+
+  // La máscara agujerea la barra con un círculo de luz de borde suave.
+  &--uv &__header--lit &__redacted::after {
+    mask-image: radial-gradient(
+      circle var(--dossier-uv-r) at var(--dossier-uv-x) var(--dossier-uv-y),
+      transparent 70%,
+      #000 100%
+    );
+  }
+
+  // Dato fijo: en tinta normal, sin brillo.
+  &--uv &__redacted--revealed {
+    color: color("ink");
+    text-shadow: none;
+  }
+
+  // Completado: la zona de juego deja de capturar el gesto y el scroll vuelve.
+  &--declassified &__header {
     cursor: auto;
     touch-action: auto;
   }

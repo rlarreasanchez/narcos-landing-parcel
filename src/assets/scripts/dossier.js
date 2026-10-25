@@ -1,5 +1,6 @@
 import { scratch } from "./dossier-scratch";
 import { swipe } from "./dossier-swipe";
+import { uv } from "./dossier-uv.js";
 
 const STORAGE_KEY = "narcos:dossier:last";
 const DECLASSIFIED_CLASS = "dossier--declassified";
@@ -15,7 +16,7 @@ const ICON_RESET = "fa-lock";
 
 // Cada método vive en su fichero y expone { id, hint, supported, mount }.
 // mount() devuelve { stop, restart, revealAll }. Se turnan en este orden.
-const METHODS = [scratch, swipe];
+const METHODS = [scratch, swipe, uv];
 
 function readLastId() {
   try {
