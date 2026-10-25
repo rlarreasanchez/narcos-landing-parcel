@@ -1,5 +1,7 @@
+import { scratch } from "./dossier-scratch";
 import { swipe } from "./dossier-swipe";
 
+const STORAGE_KEY = "narcos:dossier:last";
 const DECLASSIFIED_CLASS = "dossier--declassified";
 const REVEALED_CLASS = "dossier__redacted--revealed";
 const AOS_ANIMATE_CLASS = "aos-animate";
@@ -10,6 +12,39 @@ const LABEL_REVEAL = "Revelar todo";
 const LABEL_RESET = "Volver a clasificar";
 const ICON_REVEAL = "fa-lock-open";
 const ICON_RESET = "fa-lock";
+
+// Cada método vive en su fichero y expone { id, hint, supported, mount }.
+// mount() devuelve { stop, restart, revealAll }. Se turnan en este orden.
+const METHODS = [scratch, swipe];
+
+function readLastId() {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function saveLastId(id) {
+  try {
+    localStorage.setItem(STORAGE_KEY, id);
+  } catch {
+    // Sin localStorage: azar sin memoria entre recargas.
+  }
+}
+
+// Elige el método siguiente al de la visita anterior, saltando los que el
+// navegador no soporta. Si no hay memoria, uno al azar.
+function pickMethod() {
+  const available = METHODS.filter((method) => method.supported());
+  const last = available.findIndex((method) => method.id === readLastId());
+  const method =
+    last === -1
+      ? available[Math.floor(Math.random() * available.length)]
+      : available[(last + 1) % available.length];
+  saveLastId(method.id);
+  return method;
+}
 
 export function initDossier() {
   const dossier = document.querySelector(".dossier");
@@ -33,7 +68,7 @@ export function initDossier() {
     return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const method = swipe;
+  const method = pickMethod();
   let completed = false;
   let controller = null;
 
