@@ -55,8 +55,10 @@ a {
   color: color("highlight");
   text-underline-offset: 0.2em;
 
-  &:hover {
-    text-decoration-thickness: 2px;
+  @include hover {
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
   }
 
   &:focus-visible {
