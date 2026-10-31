@@ -8,9 +8,7 @@
     gap: spacing(1);
     padding: spacing(3);
 
-    // Espacio reservado para que el sello no tape el texto.
-    padding-inline-end: rem(150px);
-
+    // Se reserva espacio para que no tape el texto
     @include mq("sm") {
       padding-inline-end: rem(200px);
     }
@@ -103,9 +101,11 @@
   }
 
   &__stamp {
-    position: absolute;
-    inset-block-start: spacing(2);
-    inset-inline-end: spacing(2);
+    // En móvil el sello es el primer elemento del grid, alineado a la derecha,
+    // para que el texto use todo el ancho (es aria-hidden: el orden visual no
+    // afecta a la lectura).
+    order: -1;
+    justify-self: end;
     padding: spacing(0.5) spacing(1.5);
     color: color("accent");
     font-family: font("display");
@@ -118,6 +118,9 @@
     pointer-events: none;
 
     @include mq("sm") {
+      position: absolute;
+      inset-block-start: spacing(2);
+      inset-inline-end: spacing(2);
       font-size: rem(32px);
     }
 
